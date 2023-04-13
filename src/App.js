@@ -1,7 +1,7 @@
 import "./App.css";
 import { Component } from "react";
 import CardList from "./components/card-list/card-list.component";
-import Searchbar from "./components/search-box/search-box.componetn";
+import Searchbar from "./components/search-box/search-box.componet";
 
 class App extends Component {
   constructor() {
