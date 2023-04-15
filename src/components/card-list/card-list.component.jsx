@@ -3,23 +3,18 @@ import Card from "./card.component";
 
 import "./card-list.styles.css";
 
-class CardList extends Component {
-  render() {
-    const { monsters } = this.props;
-    // console.log("render monster in CardList: ", monsters);
-
-    return (
-      <div className="card-list">
-        {monsters.map((monster) => {
-          return (
-            <div key={monster.id} className="mt-5 mb-1">
-              <Card monster={monster} />
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-}
+const CardList = ({ monsters }) => {
+  return (
+    <div className="card-list">
+      {monsters.map((monster) => {
+        return (
+          <div key={monster.id} className="mt-5 mb-1">
+            <Card id={monster.id} name={monster.name} email={monster.email} />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 export default CardList;
