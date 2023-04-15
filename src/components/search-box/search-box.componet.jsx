@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import "./search-box.styles.css";
 
-const Searchbar = ({ onSearchChange, placeHolderString }) => {
+const Searchbar = ({ onSearchChange, placeHolderString, value }) => {
   return (
     <div>
       <Form>
@@ -10,6 +10,7 @@ const Searchbar = ({ onSearchChange, placeHolderString }) => {
             onChange={onSearchChange}
             type="email"
             placeholder={placeHolderString}
+            value={value}
           />
         </Form.Group>
       </Form>
