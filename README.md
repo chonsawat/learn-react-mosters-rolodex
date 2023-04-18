@@ -71,5 +71,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### Docker
 ```
-docker run chonsawat/monster-rolodex
+docker run --name app -p 3000:3000 chonsawat/monsters-rolodex
+```
+or
+```
+docker-compose up
 ```
