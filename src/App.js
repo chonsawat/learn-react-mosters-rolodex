@@ -1,61 +1,60 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./App.css";
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import CardList from "./components/card-list/card-list.component";
 import Searchbar from "./components/search-box/search-box.componet";
 
-class App extends Component {
-  constructor() {
-    super();
+const App = () => {
+  const [monsters, setMonsters] = useState([]);
+  const [title, setTitle] = useState("Monster Rolodex");
+  const [searchField, setSearchField] = useState("");
+  const [filteredMonsters, setFilteredMonsters] = useState(monsters);
 
-    this.state = {
-      monsters: [],
-    };
-  }
+  console.log("App.js - render: ", monsters, filteredMonsters);
 
-  componentDidMount() {
+  useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => {
         return response.json();
       })
-      .then((user) => {
-        this.setState(
-          () => {
-            return {
-              monsters: user,
-              searchField: "",
-            };
-          },
-          () => {
-            console.log(this.state);
-          }
-        );
-      });
-  }
+      .then((user) => setMonsters(user));
+    console.log("set: monsters - render", monsters, filteredMonsters);
+  }, []);
 
-  onSearchChange = (event) => {
-    const searchField = event.target.value.toLocaleLowerCase();
-
-    this.setState({
-      searchField,
-    });
-  };
-
-  render() {
-    const { monsters, searchField } = this.state;
-    const { onSearchChange } = this;
-
+  useEffect(() => {
     const filterMonsters = monsters.filter((monster) => {
       return monster.name.toLocaleLowerCase().includes(searchField);
     });
 
-    return (
-      <div className="App">
-        <h1 className="app-title">Monster Rolodex</h1>
-        <Searchbar onSearchChange={onSearchChange} />
-        <CardList monsters={filterMonsters} />
-      </div>
-    );
-  }
-}
+    setFilteredMonsters(filterMonsters);
+    console.log("set: filteredMonsters - render", monsters, filteredMonsters);
+  }, [monsters, searchField]);
+
+  const onSearchChange = (event) => {
+    const searchFieldString = event.target.value.toLocaleLowerCase();
+    setSearchField(searchFieldString);
+  };
+
+  const onTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  return (
+    <div className="App">
+      <h1 className="app-title">{title}</h1>
+      <Searchbar
+        onSearchChange={onSearchChange}
+        placeHolderString="Search monsters"
+      />
+      <Searchbar
+        className="title-search-box"
+        onSearchChange={onTitleChange}
+        placeHolderString={title}
+        value={title}
+      />
+      <CardList monsters={filteredMonsters} />
+    </div>
+  );
+};
 
 export default App;
