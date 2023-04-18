@@ -7,4 +7,4 @@ RUN npm install
 
 COPY . /my-app/
 
-CMD ["npm", "run", "start"]
+CMD ["./node_modules/.bin/react-scripts", "start"]
