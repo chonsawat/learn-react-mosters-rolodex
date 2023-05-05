@@ -1,10 +1,12 @@
 .card-container {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+  display: grid;
+  grid-template-columns: auto;
   background-color: #c51f51d0;
   border: 1px solid rgb(240, 119, 119);
-  border-radius: 5px;
-  padding: 25px;
+  border-radius: 3px;
+  padding: 15px;
   cursor: pointer;
   -moz-osx-font-smoothing: grayscale;
   backface-visibility: hidden;

@@ -1,0 +1,4 @@
+{
+  "plugins": ["react-hooks", "react-exhaustive-deps"],
+  "rules": { "react-hooks/exhaustive-deps": "error" },
+}
